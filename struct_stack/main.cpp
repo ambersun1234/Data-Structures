@@ -98,6 +98,8 @@ int main(int argc, const char *argv[]) {
                 cout << "\tpush data into stack" << endl;
                 cout << "pop:" << endl;
                 cout << "\tpop data from the stack" << endl;
+                cout << "clean:" << endl;
+                cout << "\tclean all stack data" << endl;
                 cout << "exit:" << endl;
                 cout << "\texit the console" << endl;
                 break;

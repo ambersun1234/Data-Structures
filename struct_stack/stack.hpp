@@ -14,19 +14,16 @@ class stack {
         stack();
         stack(itemType value);
         ~stack();
+
+        node<itemType>* getHead();
+        int getCapacity();
+
         void push(itemType value);
         node<itemType>* pop();
         bool isEmpty();
         node<itemType>* peek();
+        void clean();
 };
-
-#ifndef struct_node_header
-    #include "../struct_node/node.hpp"
-#endif
-
-#ifndef struct_stack_header
-    #include "../struct_stack/stack.hpp"
-#endif
 
 template<typename itemType>
 stack<itemType>::stack() {
@@ -50,6 +47,16 @@ stack<itemType>::~stack() {
         delete current;
         current = tmp;
     }
+}
+
+template<typename itemType>
+node<itemType>* stack<itemType>::getHead() {
+    return this->stack_head;
+}
+
+template<typename itemType>
+int stack<itemType>::getCapacity() {
+    return this->capacity;
 }
 
 template<typename itemType>
@@ -101,5 +108,23 @@ node<itemType>* stack<itemType>::peek() {
         node<itemType> *tmp = this->stack_head;
 
         return tmp;
+    }
+}
+
+template<typename itemType>
+void stack<itemType>::clean() {
+    if (this->capacity == 0 && this->stack_head == nullptr) {
+        return;
+    } else {
+        // clean data
+        node<itemType>* current = this->stack_head;
+
+        while (current != nullptr) {
+            node<itemType>* tmp = current;
+            current = current->getNext();
+
+            delete tmp;
+        }
+        return;
     }
 }

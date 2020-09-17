@@ -8,6 +8,14 @@ git clone https://github.com/ambersun1234/Data-Structures
 
 ## Run
 ```=1
+make compile stack
+make run stack
+```
+
+## Run test
+```=1
+make unit stack
+make test stack
 ```
 
 ## License

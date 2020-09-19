@@ -1,4 +1,6 @@
 # Data Structures
+![CI](https://github.com/ambersun1234/Data-Structures/workflows/CI/badge.svg?branch=master)
+
 Collection of all data structures implementation with c++
 
 ## Clone repo

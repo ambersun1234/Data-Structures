@@ -16,6 +16,13 @@ make run stack
 ```=1
 make unit stack
 make test stack
+
+# replace stack with other data structures(directory name start with struct_*)
+```
+
+## Run all test
+```=1
+make ci
 ```
 
 ## License

@@ -19,7 +19,7 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
 # House-keeping build targets.
-TARGETS = gtest.a
+TARGETS = ci
 all : $(TARGETS)
 
 # Usually you shouldn't tweak such internal variables, indicated by a
@@ -59,6 +59,9 @@ compile: struct_$(DS)/main.cpp
 
 run: ./$(DS)_runfile
 	@./$^
+
+ci: ./ci.sh
+	@bash $^
 
 .PHONY: clean
 

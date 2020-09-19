@@ -125,6 +125,8 @@ void stack<itemType>::clean() {
 
             delete tmp;
         }
+        this->capacity = 0;
+        this->stack_head = nullptr;
         return;
     }
 }

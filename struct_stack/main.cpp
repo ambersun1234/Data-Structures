@@ -84,6 +84,22 @@ int main(int argc, const char *argv[]) {
                 break;
             }
 
+            case hash_compiletime("clean"): {
+                mystack->clean();
+                cout << "Stack clean done" << endl;
+                break;
+            }
+
+            case hash_compiletime("head"): {
+                cout << "current stack head pointer is: " << mystack->getHead() << endl;
+                break;
+            }
+
+            case hash_compiletime("capacity"): {
+                cout << "current stack capacity is: " << mystack->getCapacity() << endl;
+                break;
+            }
+
             case hash_compiletime("exit"): {
                 cout << "Bye" << endl;
                 break;
@@ -100,6 +116,10 @@ int main(int argc, const char *argv[]) {
                 cout << "\tpop data from the stack" << endl;
                 cout << "clean:" << endl;
                 cout << "\tclean all stack data" << endl;
+                cout << "head:" << endl;
+                cout << "\tcheckout stack head pointer" << endl;
+                cout << "capacity:" << endl;
+                cout << "\tcheckout current stack capacity" << endl;
                 cout << "exit:" << endl;
                 cout << "\texit the console" << endl;
                 break;

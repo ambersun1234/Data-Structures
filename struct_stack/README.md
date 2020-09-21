@@ -3,7 +3,7 @@
 # Overview
 stack implementation based on singly linked list
 
-# Functions
+## Functions
 + `getHead`
     + get the top element's pointer
 + `getCapacity`
@@ -19,13 +19,13 @@ stack implementation based on singly linked list
 + `clean`
     + clean all the stack element
 
-# Run
+## Run
 ```=1
 make compile stack
 make run stack
 ```
 
-# Test
+## Test
 ```=1
 make unit stack
 make test stack

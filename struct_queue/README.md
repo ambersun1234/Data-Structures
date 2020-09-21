@@ -3,7 +3,7 @@
 # Overview
 circular queue implementation based on doubly linked list
 
-# Functions
+## Functions
 + `getHead`
     + get the queue's head pointer
 + `getTail`
@@ -27,13 +27,13 @@ circular queue implementation based on doubly linked list
 + `reverse`
     + reverse whole queue
 
-# Run
+## Run
 ```=1
 make compile queue
 make run queue
 ```
 
-# Test
+## Test
 ```=1
 make unit queue
 make test queue

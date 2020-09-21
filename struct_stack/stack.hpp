@@ -32,12 +32,6 @@ stack<itemType>::stack() {
 }
 
 template<typename itemType>
-stack<itemType>::stack(itemType value) {
-    this->stack_head = nullptr;
-    this->capacity = 0;
-}
-
-template<typename itemType>
 stack<itemType>::~stack() {
     node<itemType> *current = this->stack_head;
 

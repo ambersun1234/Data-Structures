@@ -1,0 +1,15 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+
+echo -e "${YELLOW}Auto CI for all data structures${NC}"
+bash ./ci.sh 2>&1 >> /dev/null
+echo
+if [ "$?" -eq 0 ]; then
+	echo -e "${GREEN}CI check done${NC}"
+else
+	echo -e "${RED}CI check failed${NC}"
+fi

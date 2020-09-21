@@ -7,7 +7,8 @@ Collection of all data structures implementation with c++
 ```=1
 git clone --recurse-submodules https://github.com/ambersun1234/Data-Structures
 ```
-
+## Git hooks
++ enable git hooks by `make all`
 
 ## Run
 ```=1

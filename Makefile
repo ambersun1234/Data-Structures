@@ -18,9 +18,11 @@ GTEST_DIR = ./googletest/googletest
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
+# git hook directory
+GIT_HOOKS := .git/hooks/applied
+
 # House-keeping build targets.
-TARGETS = ci
-all : $(TARGETS)
+all: $(GIT_HOOKS)
 
 # Usually you shouldn't tweak such internal variables, indicated by a
 # trailing _.
@@ -43,6 +45,11 @@ gtest.a: gtest-all.o
 
 gtest_main.a: gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
+
+# git hooks
+$(GIT_HOOKS):
+	@bash scripts/install-git-hooks
+	@echo
 
 # Unit test part
 %_unittest:

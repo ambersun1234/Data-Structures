@@ -1,5 +1,5 @@
 # Linked list
-doubly linked list implementation
+singly linked list implementation
 
 ## Functions
 + `insert_head`
@@ -16,7 +16,7 @@ doubly linked list implementation
     + delete element at linked list tail
 + `travel`
     + travel all list from head to tail
-+ `delete_target`
++ `delete_element`
     + delete specific target from list
 + `reverse`
     + reverse all list
@@ -24,19 +24,21 @@ doubly linked list implementation
     + swap element pairwise on all list
 + `getHead`
     + get current list head pointer
-+ `getTail`
-    + get current list tail pointer
++ `getCapacity`
+    + get current list capacity
++ `clean`
+    + clean all element in list
 
 ## Run
 ```=1
-make compile dlist
-make test dlist
+make compile list
+make test list
 ```
 
 ## Test
 ```=1
-make unit dlist
-make test dlist
+make unit list
+make test list
 ```
 
 > run the above command at root directory

@@ -18,6 +18,10 @@ class node {
         node<itemType>* getNext();
         void setNext(node<itemType>*);
         void setPrevious(node<itemType>*);
+
+        bool operator==(const node<itemType> &b) {
+            return this->data == b.data;
+        }
 };
 
 template<typename itemType>

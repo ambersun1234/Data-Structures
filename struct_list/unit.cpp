@@ -148,6 +148,39 @@ TEST_F(struct_test, delete_head) {
     EXPECT_EQ(dlist->getCapacity(), 0);
 }
 
+TEST_F(struct_test, delete_tail) {
+    slist->delete_tail();
+    EXPECT_EQ(slist->getHead(), nullptr);
+    EXPECT_EQ(slist->getCapacity(), 0);
+    slist->insert_head("world");
+    slist->insert_head("hello");
+    EXPECT_EQ(slist->getCapacity(), 2);
+    EXPECT_EQ(slist->getHead()->getNext()->getData(), "world");
+
+    ilist->delete_tail();
+    EXPECT_EQ(ilist->getCapacity(), 0);
+    EXPECT_EQ(ilist->getHead(), nullptr);
+    ilist->insert_head(1);
+    ilist->insert_head(2);
+    EXPECT_EQ(ilist->getHead()->getData(), 2);
+    EXPECT_EQ(ilist->getCapacity(), 2);
+    ilist->delete_tail();
+    ilist->delete_tail();
+    EXPECT_EQ(ilist->getCapacity(), 0);
+    EXPECT_TRUE(ilist->getHead() == nullptr);
+
+    dlist->insert_head(1.1);
+    dlist->insert_tail(2.2);
+    dlist->insert_tail(3.3);
+    EXPECT_EQ(dlist->getCapacity(), 3);
+    EXPECT_EQ(dlist->getHead()->getData(), 1.1);
+    dlist->delete_head();
+    EXPECT_EQ(dlist->getHead()->getData(), 2.2);
+    EXPECT_EQ(dlist->getHead()->getNext()->getData(), 3.3);
+    dlist->delete_tail();
+    EXPECT_EQ(dlist->getHead()->getData(), 2.2);
+}
+
 GTEST_API_ int main( int argc , char **argv ) {
 	testing::InitGoogleTest( &argc , argv );
 	return RUN_ALL_TESTS();

@@ -146,3 +146,26 @@ void list<itemType>::delete_head() {
     delete head;
     return;
 }
+
+template<typename itemType>
+void list<itemType>::delete_tail() {
+    node<itemType> *current = this->list_head;
+    node<itemType> *previous = nullptr;
+
+    while (current != nullptr && current->getNext() != nullptr) {
+        previous = current;
+        current = current->getNext();
+    }
+
+    if (current == nullptr) return;
+    else if (previous == nullptr) {
+        delete current;
+        this->list_head = nullptr;
+        this->capacity = 0;
+    }
+    else {
+        previous->setNext(current->getNext());
+        this->capacity -= 1;
+    }
+    return;
+}

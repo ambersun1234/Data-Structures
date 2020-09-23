@@ -9,14 +9,14 @@ using namespace std;
 #endif
 
 template<typename itemType>
-class dlist {
+class list {
     private:
-        node<itemType> *dlist_head;
+        node<itemType> *list_head;
         int capacity;
 
     public:
-        dlist();
-        ~dlist();
+        list();
+        ~list();
 
         void insert_head(itemType value);
         void insert_tail(itemType value);
@@ -34,42 +34,42 @@ class dlist {
 };
 
 template<typename itemType>
-dlist<itemType>::dlist() {
-    this->dlist_head = nullptr;
+list<itemType>::list() {
+    this->list_head = nullptr;
     this->capacity = 0;
 }
 
 template<typename itemType>
-node<itemType>* dlist<itemType>::getHead() {
-    return this->dlist_head;
+node<itemType>* list<itemType>::getHead() {
+    return this->list_head;
 }
 
 template<typename itemType>
-int dlist<itemType>::getCapacity() {
+int list<itemType>::getCapacity() {
     return this->capacity;
 }
 
 template<typename itemType>
-void dlist<itemType>::insert_head(itemType value) {
+void list<itemType>::insert_head(itemType value) {
     node<itemType> *newNode = new node<itemType>(value);
-    node<itemType> *current = this->dlist_head;
+    node<itemType> *current = this->list_head;
 
     newNode->setNext(current);
-    this->dlist_head = newNode;
+    this->list_head = newNode;
     this->capacity += 1;
 
     return;
 }
 
 template<typename itemType>
-void dlist<itemType>::insert_tail(itemType value) {
+void list<itemType>::insert_tail(itemType value) {
     node<itemType> *newNode = new node<itemType>(value);
-    node<itemType> *current = this->dlist_head;
+    node<itemType> *current = this->list_head;
 
     while (current != nullptr && current->getNext() != nullptr) {
         current = current->getNext();
     }
-    if (current == nullptr) this->dlist_head = newNode;
+    if (current == nullptr) this->list_head = newNode;
     else current->setNext(newNode);
 
     this->capacity += 1;
@@ -77,13 +77,10 @@ void dlist<itemType>::insert_tail(itemType value) {
     return;
 }
 
-#include <iostream>
-using namespace std;
-
 template<typename itemType>
-bool dlist<itemType>::insert_after(itemType value, itemType target) {
+bool list<itemType>::insert_after(itemType value, itemType target) {
     node<itemType> *newNode = new node<itemType>(value);
-    node<itemType> *current = this->dlist_head;
+    node<itemType> *current = this->list_head;
     node<itemType> *helper = new node<itemType>(target);
 
     while (current != nullptr && !(*current == *helper)) {
@@ -101,4 +98,51 @@ bool dlist<itemType>::insert_after(itemType value, itemType target) {
 
     delete helper;
     return true;
+}
+
+template<typename itemType>
+bool list<itemType>::insert_before(itemType value, itemType target) {
+    node<itemType> *newNode = new node<itemType>(value);
+    node<itemType> *current = this->list_head;
+    node<itemType> *previous = nullptr;
+    node<itemType> *helper = new node<itemType>(target);
+
+    while (current != nullptr && !(*current == *helper)) {
+        previous = current;
+        current = current->getNext();
+    }
+
+    if (current == nullptr) return false;
+    else if (previous == nullptr) {
+        newNode->setNext(current);
+        this->list_head = newNode;
+
+        this->capacity += 1;
+    }
+    else {
+        node<itemType> *tmp = previous->getNext();
+        previous->setNext(newNode);
+        newNode->setNext(tmp);
+
+        this->capacity += 1;
+    }
+
+    delete helper;
+    return true;
+}
+
+template<typename itemType>
+void list<itemType>::delete_head() {
+    node<itemType> *head = this->list_head;
+
+    if (this->list_head != nullptr) {
+        this->list_head = this->list_head->getNext();
+        this->capacity -= 1;
+    }
+    else {
+        this->list_head = nullptr;
+    }
+
+    delete head;
+    return;
 }

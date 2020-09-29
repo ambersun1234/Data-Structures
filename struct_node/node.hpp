@@ -13,6 +13,7 @@ class node {
         node();
         node(itemType input);
         ~node();
+        void setData(itemType value);
         itemType getData();
         node<itemType>* getPrevious();
         node<itemType>* getNext();
@@ -52,6 +53,11 @@ node<itemType>::~node() {
 template<typename itemType>
 itemType node<itemType>::getData() {
     return this->data;
+}
+
+template<typename itemType>
+void node<itemType>::setData(itemType value) {
+    this->data = value;
 }
 
 template<typename itemType>

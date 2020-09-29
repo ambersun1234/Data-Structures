@@ -28,6 +28,7 @@ class list {
         void delete_target(itemType value);
         void reverse();
         void pairwise();
+        node<itemType>* searchElement(itemType value);
         void clean();
         node<itemType>* getHead();
         int getCapacity();
@@ -132,6 +133,23 @@ bool list<itemType>::insert_before(itemType value, itemType target) {
 }
 
 template<typename itemType>
+void list<itemType>::travel() {
+    if (this->list_head == nullptr) {
+        return;
+    }
+
+    node<itemType> *current = this->list_head->getNext();
+    cout << this->list_head->getData();
+
+    while (current != nullptr) {
+        cout << ' ' << current->getData();
+        current = current->getNext();
+    }
+    cout << endl;
+    return;
+}
+
+template<typename itemType>
 void list<itemType>::delete_head() {
     node<itemType> *head = this->list_head;
 
@@ -167,5 +185,89 @@ void list<itemType>::delete_tail() {
         previous->setNext(current->getNext());
         this->capacity -= 1;
     }
+    return;
+}
+
+template<typename itemType>
+node<itemType>* list<itemType>::searchElement(itemType value) {
+    node<itemType> *current = this->list_head;
+    node<itemType> *helper = new node<itemType>(value);
+
+    while (current != nullptr) {
+        if (*current == *helper) {
+            break;
+        }
+        current = current->getNext();
+    }
+
+    delete helper;
+
+    return current;
+}
+
+template<typename itemType>
+void list<itemType>::delete_target(itemType value) {
+    node<itemType> *target_node = this->searchElement(value);
+
+    if (target_node == nullptr) return;
+
+    node<itemType> **indirect = &this->list_head;
+    while ((*indirect) != target_node) {
+        node<itemType> *tmp = ((*indirect)->getNext());
+        indirect = &tmp;
+    }
+    this->capacity -= 1;
+
+    (*indirect) = target_node->getNext();
+    delete target_node;
+
+    return;
+}
+
+template<typename itemType>
+void list<itemType>::reverse() {
+    node<itemType> *current = this->list_head;
+    node<itemType> *previous = nullptr;
+
+    while (current != nullptr) {
+        node<itemType> *tmp = current->getNext();
+
+        current->setNext(previous);
+        previous = current;
+        current = tmp;
+    }
+    this->list_head = previous;
+    return;
+}
+
+template<typename itemType>
+void list<itemType>::pairwise() {
+    node<itemType> *current = this->list_head;
+
+    while (current != nullptr && current->getNext() != nullptr) {
+        itemType value1 = current->getData();
+        current->setData(current->getNext()->getData());
+        current->getNext()->setData(value1);
+
+        current = current->getNext()->getNext();
+    }
+
+    return;
+}
+
+template<typename itemType>
+void list<itemType>::clean() {
+    node<itemType> *current = this->list_head;
+
+    while (current != nullptr) {
+        node<itemType> *tmp = current->getNext();
+
+        delete current;
+
+        current = tmp;
+    }
+    this->capacity = 0;
+    this->list_head = nullptr;
+
     return;
 }

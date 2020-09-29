@@ -22,6 +22,8 @@ singly linked list implementation
     + reverse all list
 + `pairwise`
     + swap element pairwise on all list
++ `searchElement`
+    + search particular element and return node pointer
 + `getHead`
     + get current list head pointer
 + `getCapacity`

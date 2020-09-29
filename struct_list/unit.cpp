@@ -181,6 +181,131 @@ TEST_F(struct_test, delete_tail) {
     EXPECT_EQ(dlist->getHead()->getData(), 2.2);
 }
 
+TEST_F(struct_test, search_element) {
+    slist->insert_head("hello");
+    slist->insert_tail("world");
+    slist->insert_tail("pink");
+    node<string> *tmps = slist->searchElement("pink");
+    EXPECT_TRUE(tmps != nullptr);
+    EXPECT_EQ(tmps->getData(), "pink");
+    slist->delete_tail();
+    tmps = slist->searchElement("pink");
+    EXPECT_TRUE(tmps == nullptr);
+
+    ilist->delete_tail();
+    ilist->insert_head(1);
+    ilist->insert_head(11);
+    ilist->insert_head(111);
+    node<int> *tmpi = ilist->searchElement(111);
+    EXPECT_TRUE(tmpi != nullptr);
+    EXPECT_EQ(tmpi->getData(), 111);
+    EXPECT_EQ(tmpi, ilist->getHead());
+
+    dlist->insert_head(2.2);
+    dlist->insert_head(22.2);
+    dlist->insert_head(222.2);
+    dlist->delete_head();
+    node<double> *tmpd = dlist->searchElement(222.2);
+    EXPECT_EQ(tmpd, nullptr);
+    tmpd = dlist->searchElement(2.2);
+    EXPECT_EQ(tmpd->getData(), 2.2);
+}
+
+TEST_F(struct_test, delete_target) {
+    slist->insert_head("hello");
+    slist->insert_head("world");
+    slist->insert_head("pink");
+    EXPECT_EQ(slist->getCapacity(), 3);
+    slist->delete_target("pink");
+    EXPECT_EQ(slist->getCapacity(), 2);
+    EXPECT_EQ(slist->getHead()->getData(), "world");
+
+    ilist->insert_head(10);
+    ilist->delete_head();
+    ilist->insert_head(100);
+    ilist->insert_head(1000);
+    ilist->insert_head(10000);
+    EXPECT_EQ(ilist->getHead()->getData(), 10000);
+    ilist->delete_target(100);
+    EXPECT_EQ(ilist->getCapacity(), 2);
+
+    dlist->insert_tail(2.2);
+    dlist->insert_tail(22.2);
+    dlist->insert_tail(222.2);
+    dlist->insert_tail(2222.2);
+    dlist->delete_target(2.2);
+    EXPECT_EQ(dlist->getCapacity(), 3);
+    EXPECT_EQ(dlist->getHead()->getData(), 22.2);
+}
+
+TEST_F(struct_test, reverse) {
+    slist->insert_head("hello");
+    EXPECT_EQ(slist->getHead()->getData(), "hello");
+    slist->reverse();
+    EXPECT_EQ(slist->getHead()->getData(), "hello");
+    slist->insert_tail("pink");
+    slist->insert_tail("world");
+    slist->reverse();
+    EXPECT_EQ(slist->getHead()->getData(), "world");
+    EXPECT_EQ(slist->getHead()->getNext()->getData(), "pink");
+    EXPECT_EQ(slist->getHead()->getNext()->getNext()->getData(), "hello");
+
+    ilist->insert_head(10);
+    ilist->insert_head(20);
+    ilist->delete_target(30);
+    EXPECT_EQ(ilist->getCapacity(), 2);
+    ilist->reverse();
+    EXPECT_EQ(ilist->getHead()->getData(), 10);
+
+    dlist->insert_head(2.2);
+    dlist->insert_head(3.3);
+    dlist->insert_after(4.4, 2.2);
+    dlist->insert_tail(1.1);
+    EXPECT_EQ(dlist->getCapacity(), 4);
+    EXPECT_EQ(dlist->getHead()->getNext()->getData(), 2.2);
+    dlist->reverse();
+    EXPECT_EQ(dlist->getHead()->getData(), 1.1);
+    EXPECT_EQ(dlist->getHead()->getNext()->getData(), 4.4);
+    EXPECT_EQ(dlist->getHead()->getNext()->getNext()->getData(), 2.2);
+    EXPECT_EQ(dlist->getHead()->getNext()->getNext()->getNext()->getData(), 3.3);
+}
+
+TEST_F(struct_test, pairwise) {
+    slist->insert_head("hello");
+    slist->insert_head("pink");
+    slist->insert_head("wonderful");
+    slist->insert_head("world");
+    slist->pairwise();
+    EXPECT_EQ(slist->getCapacity(), 4);
+    EXPECT_EQ(slist->getHead()->getData(), "wonderful");
+    EXPECT_EQ(slist->getHead()->getNext()->getData(), "world");
+
+    ilist->insert_head(1);
+    ilist->clean();
+    ilist->insert_head(1);
+    ilist->insert_head(2);
+    ilist->insert_head(3);
+    ilist->insert_head(4);
+    ilist->reverse();
+    EXPECT_EQ(ilist->getHead()->getData(), 1);
+    ilist->pairwise();
+    EXPECT_EQ(ilist->getHead()->getData(), 2);
+    EXPECT_EQ(ilist->getHead()->getNext()->getData(), 1);
+
+    dlist->insert_head(2.2);
+    dlist->insert_before(1.1, 2.2);
+    dlist->insert_tail(3.3);
+    dlist->insert_after(4.4, 3.3);
+    EXPECT_EQ(dlist->getCapacity(), 4);
+    EXPECT_EQ(dlist->getHead()->getData(), 1.1);
+    dlist->pairwise();
+    dlist->reverse();
+    EXPECT_EQ(dlist->getHead()->getData(), 3.3);
+    EXPECT_EQ(dlist->getHead()->getNext()->getData(), 4.4);
+    EXPECT_EQ(dlist->getHead()->getNext()->getNext()->getData(), 1.1);
+    EXPECT_EQ(dlist->getHead()->getNext()->getNext()->getNext()->getData(), 2.2);
+}
+
 GTEST_API_ int main( int argc , char **argv ) {
 	testing::InitGoogleTest( &argc , argv );
 	return RUN_ALL_TESTS();

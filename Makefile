@@ -9,7 +9,7 @@ $(eval $(THIS_FILE):;@:)
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -pthread -std=c++1y
+CXXFLAGS += -g -Wall -Wextra -pthread -std=c++17
 
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.

@@ -66,6 +66,88 @@ TEST_F(struct_test, enFront) {
 
 TEST_F(struct_test, getFront) {
     EXPECT_EQ(squeuea->getFront(), "");
+    squeuea->enFront("lala");
+    EXPECT_EQ(squeuea->isEmpty(), false);
+    squeuea->enFront("lalaland");
+    squeuea->enFront("aa");
+    squeuea->enFront("bb");
+    EXPECT_EQ(squeuea->getFront(), "bb");
+    EXPECT_EQ(squeuea->getCapacity(), 3);
+
+    iqueuea->enRear(10);
+    iqueuea->enRear(20);
+    iqueuea->enRear(30);
+    iqueuea->enRear(40);
+    iqueuea->enRear(50);
+    EXPECT_EQ(iqueuea->getCapacity(), 5);
+    EXPECT_EQ(iqueuea->getFront(), 10);
+    EXPECT_EQ(iqueuea->getCapacity(), 4);
+    EXPECT_EQ(iqueuea->getFront(), 20);
+    EXPECT_EQ(iqueuea->getCapacity(), 3);
+    EXPECT_EQ(iqueuea->getFront(), 30);
+    EXPECT_EQ(iqueuea->getCapacity(), 2);
+    EXPECT_EQ(iqueuea->getFront(), 40);
+    EXPECT_EQ(iqueuea->getCapacity(), 1);
+    EXPECT_EQ(iqueuea->getFront(), 50);
+    EXPECT_TRUE(iqueuea->isEmpty());
+
+    dqueuea->enFront(1.1);
+    EXPECT_EQ(dqueuea->getCapacity(), 1);
+    EXPECT_EQ(dqueuea->getFront(), 1.1);
+    EXPECT_EQ(dqueuea->getCapacity(), 0);
+    dqueuea->clean();
+    dqueuea->enFront(2.2);
+    EXPECT_EQ(dqueuea->peekFront(), 2.2);
+    EXPECT_EQ(dqueuea->getCapacity(), 1);
+}
+
+TEST_F(struct_test, enRear) {
+    squeuea->enRear("hello");
+    squeuea->enRear("world");
+    EXPECT_EQ(squeuea->peekFront(), "hello");
+    EXPECT_EQ(squeuea->getCapacity(), 2);
+
+    EXPECT_TRUE(iqueuea->isEmpty());
+    iqueuea->enFront(10);
+    iqueuea->enRear(20);
+    iqueuea->enRear(30);
+    iqueuea->enRear(40);
+    iqueuea->enFront(50);
+    iqueuea->enRear(210);
+    EXPECT_EQ(iqueuea->getCapacity(), iqueuea->getSize());
+    EXPECT_TRUE(iqueuea->isFull());
+    EXPECT_EQ(iqueuea->getFront(), 50);
+    EXPECT_EQ(iqueuea->getRear(), 40);
+}
+
+TEST_F(struct_test, getRear) {
+    squeuea->enFront("world");
+    squeuea->enRear("hello");
+    EXPECT_EQ(squeuea->getRear(), "hello");
+    EXPECT_EQ(squeuea->getCapacity(), 1);
+
+    iqueuea->enRear(10);
+    iqueuea->clean();
+    iqueuea->enRear(20);
+    iqueuea->enRear(30);
+    iqueuea->enRear(40);
+    iqueuea->enRear(50);
+    iqueuea->enRear(10);
+    EXPECT_EQ(iqueuea->getCapacity(), 5);
+    EXPECT_EQ(iqueuea->getRear(), 10);
+    EXPECT_EQ(iqueuea->getRear(), 50);
+    EXPECT_EQ(iqueuea->getRear(), 40);
+    EXPECT_EQ(iqueuea->getFront(), 20);
+    EXPECT_EQ(iqueuea->getCapacity(), 1);
+
+    dqueuea->enRear(1.1);
+    dqueuea->enFront(2.2);
+    dqueuea->enRear(3.3);
+    EXPECT_EQ(dqueuea->getCapacity(), 3);
+    EXPECT_EQ(dqueuea->getFront(), 2.2);
+    EXPECT_EQ(dqueuea->getCapacity(), 2);
+    EXPECT_EQ(dqueuea->getRear(), 3.3);
+    EXPECT_EQ(dqueuea->getFront(), 1.1);
 }
 
 GTEST_API_ int main( int argc , char **argv ) {

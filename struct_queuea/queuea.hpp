@@ -33,6 +33,8 @@ class queuea {
         int getSize();
         int getCapacity();
 
+        void adjust_position();
+
         void clean();
 
     private:
@@ -107,16 +109,26 @@ itemType queuea<itemType>::peekRear() {
 template<typename itemType>
 itemType queuea<itemType>::getFront() {
     itemType result = this->peekFront();
+    if (this->capacity == 0) return result;
+
     this->front_pos += 1;
     this->capacity -= 1;
+    
+    this->adjust_position();
+
     return result;
 }
 
 template<typename itemType>
 itemType queuea<itemType>::getRear() {
     itemType result = this->peekRear();
-    this->rear_pos += 1;
+    if (this->capacity == 0) return result;
+
+    this->rear_pos -= 1;
     this->capacity -= 1;
+
+    this->adjust_position();
+    
     return result;
 }
 
@@ -126,8 +138,7 @@ bool queuea<itemType>::enFront(itemType value) {
 
     this->front_pos = this->front_pos - 1;
 
-    if (this->front_pos < 0) this->front_pos = this->size - 1;
-    else if (abs(this->front_pos) + 1 >= this->size) this->front_pos = 0;
+    this->adjust_position();
 
     this->queue[this->front_pos] = value;
 
@@ -143,6 +154,31 @@ bool queuea<itemType>::enFront(itemType value) {
 template<typename itemType>
 bool queuea<itemType>::enRear(itemType value) {
     if (this->isFull()) return false;
+
+    this->rear_pos = this->rear_pos + 1;
+
+    this->adjust_position();
+
+    this->queue[this->rear_pos] = value;
+
+    if (this->capacity == 0) {
+        this->front_pos = this->rear_pos;
+    }
+    
+    this->capacity += 1;
+
+    return true;
+}
+
+template<typename itemType>
+void queuea<itemType>::adjust_position() {
+    if (this->front_pos < 0) this->front_pos = this->size - 1;
+    else if (abs(this->front_pos) + 1 > this->size) this->front_pos = 0;
+
+    if (this->rear_pos < 0) this->rear_pos = this->size - 1;
+    else if (abs(this->rear_pos) + 1 > this->size) this->rear_pos = 0;
+
+    return;
 }
 
 template<typename itemType>

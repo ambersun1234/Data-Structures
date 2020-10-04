@@ -33,6 +33,7 @@ make ci
 + [stack](./struct_stack)
 + [queue](./struct_queue)
 + [list](./struct_list)
++ [queue - array](./struct_queuea)
 
 ## License
 + This project is licensed under `Apache-2.0` License - see the [LICENSE](./LICENSE) file for detail

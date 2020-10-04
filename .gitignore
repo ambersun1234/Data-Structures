@@ -54,3 +54,6 @@ dkms.conf
 # custom file
 *_runfile
 *_unittest
+
+# custom
+.vscode

@@ -8,7 +8,5 @@ fi
 ln -sf ../../scripts/pre-commit.hook .git/hooks/pre-commit.hook || exit 1
 chmod +x .git/hooks/pre-commit.hook
 
-touch .git/hooks/applied || exit 1
-
 echo
 echo "Git hooks are installed successfully"

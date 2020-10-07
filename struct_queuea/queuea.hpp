@@ -44,6 +44,7 @@ class queuea {
 template<typename itemType>
 queuea<itemType>::queuea(int size) {
     this->queue = new itemType[size];
+    this->capacity = 0;
     this->size = size;
     this->front_pos = 0;
     this->rear_pos = 0;

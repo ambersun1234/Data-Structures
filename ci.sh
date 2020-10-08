@@ -4,6 +4,8 @@ rt=0
 for element in $(find . -type d -name "struct_*"); do
     if [ "$element" = "./struct_node" ]; then
         continue
+    elif [ "$element" = "./struct_tree_node" ]; then
+        continue
     else
         tmp=$(echo ${element} | cut -d'/' -f 2)
         tmp=$(echo ${tmp} | cut -d'_' -f 2)

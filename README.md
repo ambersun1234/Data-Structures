@@ -30,10 +30,11 @@ make ci
 ```
 
 ## Implementation link
-+ [stack](./struct_stack)
-+ [queue](./struct_queue)
-+ [list](./struct_list)
++ [stack - linked list](./struct_stack)
 + [queue - array](./struct_queuea)
++ [list - linked list](./struct_list)
++ [circular queue - doubly linked list](./struct_queue)
++ [circular priority queue - linked list](./struct_queuep)
 
 ## License
 + This project is licensed under `Apache-2.0` License - see the [LICENSE](./LICENSE) file for detail

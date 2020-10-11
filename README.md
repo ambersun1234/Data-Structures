@@ -35,6 +35,7 @@ make ci
 + [list - linked list](./struct_list)
 + [circular queue - doubly linked list](./struct_queue)
 + [circular priority queue - linked list](./struct_queuep)
++ [binary search tree - singly linkes list](./struct_tree)
 
 ## License
 + This project is licensed under `Apache-2.0` License - see the [LICENSE](./LICENSE) file for detail

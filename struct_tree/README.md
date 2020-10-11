@@ -15,7 +15,19 @@ binary search tree implementation based on singly linked list
 + `insert`
     + insert new element to binary search tree
 + `search`
-    + search the given element whether it's in tree or not
+    + search the given element whether it's in tree or not, return pointer
++ `search_parent`
+    + search the given element parent whether it's in tree or not, return pointer
++ `getMaxLevel`
+    + get binary tree max level
++ `inorder`
+    + inorder travel
++ `preorder`
+    + preorder travel
++ `postorder`
+    + postorder
++ `isLeaf`
+    + checkout whether current node is leaf or not
 
 ## Run
 ```=1

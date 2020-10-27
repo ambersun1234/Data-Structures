@@ -31,12 +31,6 @@ circular queue implementation based on array
 + `clean`
     + clean all queue data and position
 
-## Run
-```=1
-make compile queuea
-make run queuea
-```
-
 ## Test
 ```=1
 make unit queuea

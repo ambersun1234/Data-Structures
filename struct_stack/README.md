@@ -19,12 +19,6 @@ stack implementation based on singly linked list
 + `clean`
     + clean all the stack element
 
-## Run
-```=1
-make compile stack
-make run stack
-```
-
 ## Test
 ```=1
 make unit stack

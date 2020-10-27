@@ -21,12 +21,6 @@ circular priority queue implementation based on linked list
 + `isEmpty`
     + checkout the circular priority queue is empty or not
 
-## Run
-```=1
-make compile queuep
-make run queuep
-```
-
 ## Test
 ```=1
 make unit queuep

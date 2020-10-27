@@ -31,12 +31,6 @@ singly linked list implementation
 + `clean`
     + clean all element in list
 
-## Run
-```=1
-make compile list
-make test list
-```
-
 ## Test
 ```=1
 make unit list

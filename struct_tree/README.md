@@ -29,12 +29,6 @@ binary search tree implementation based on singly linked list
 + `isLeaf`
     + checkout whether current node is leaf or not
 
-## Run
-```=1
-make compile tree
-make run tree
-```
-
 ## Test
 ```=1
 make unit tree

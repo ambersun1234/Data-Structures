@@ -27,12 +27,6 @@ circular queue implementation based on doubly linked list
 + `reverse`
     + reverse whole queue
 
-## Run
-```=1
-make compile queue
-make run queue
-```
-
 ## Test
 ```=1
 make unit queue

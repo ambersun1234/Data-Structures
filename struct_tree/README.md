@@ -1,6 +1,6 @@
 # Binary search tree
 
-# Overview
+## Overview
 binary search tree implementation based on singly linked list
 
 ## Functions

@@ -1,6 +1,6 @@
 # Circular Queue - array version
 
-# Overview
+## Overview
 circular queue implementation based on array
 
 ## Functions

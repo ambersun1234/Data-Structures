@@ -1,6 +1,6 @@
 # Circular Queue
 
-# Overview
+## Overview
 circular queue implementation based on doubly linked list
 
 ## Functions

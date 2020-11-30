@@ -1,6 +1,6 @@
 # Stack
 
-# Overview
+## Overview
 stack implementation based on singly linked list
 
 ## Functions

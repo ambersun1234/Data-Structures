@@ -1,6 +1,6 @@
 # Circular Priority Queue
 
-# Overview
+## Overview
 circular priority queue implementation based on linked list
 
 ## Functions

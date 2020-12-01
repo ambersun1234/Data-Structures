@@ -22,13 +22,17 @@ class heap {
         heap(int type, int size); // 0: max-heap, 1: min-heap
 
         bool insert(itemType newValue);
+        bool remove();
         void traversal();
 
         itemType getter(int index);
         int getSize();
         int getCount();
         int getType();
+        int getRemoveChild(int current);
         bool isEmpty();
+        bool checkHeapness(int current);
+        bool isLeaf(int current);
         bool isFull();
 };
 
@@ -52,7 +56,7 @@ bool heap<itemType>::swap(int parent, int current) {
 
 template<typename itemType>
 bool heap<itemType>::insert(itemType newValue) {
-    if (count > size) return false;
+    if (this->count > this->size) return false;
 
     // insert value
     int truePos = this->count + 1;
@@ -60,7 +64,7 @@ bool heap<itemType>::insert(itemType newValue) {
 
     // check if min or max heap
     int iterator = truePos;
-    while (iterator >= 1) {
+    while (iterator > 1) {
         int parent = this->getParentLocation(iterator);
         if (this->compare(parent, iterator)) {
             this->swap(parent, iterator);
@@ -69,6 +73,24 @@ bool heap<itemType>::insert(itemType newValue) {
     }
 
     this->count += 1;
+    return true;
+}
+
+template<typename itemType>
+bool heap<itemType>::remove() {
+    this->root[1] = this->root[this->count];
+    this->count -= 1;
+
+    // trickle down
+    int iterator = 1;
+    while (!this->isLeaf(iterator)) {
+        bool heapness = this->checkHeapness(iterator);
+        if (heapness) return true;
+
+        int node = this->getRemoveChild(iterator);
+        this->swap(iterator, node);
+        iterator = node;
+    }
     return true;
 }
 
@@ -88,7 +110,7 @@ void heap<itemType>::traversal() {
 
 template<typename itemType>
 bool heap<itemType>::compare(int parent, int current) {
-    if (this->type == 0) return this->root[current] < this->root[parent]; // max-heap
+    if (this->type == 0) return this->root[parent] < this->root[current]; // max-heap
     else return this->root[parent] > this->root[current]; // min-heap
 }
 
@@ -100,6 +122,31 @@ bool heap<itemType>::isEmpty() {
 template<typename itemType>
 bool heap<itemType>::isFull() {
     return (this->count + 1) == this->size;
+}
+
+template<typename itemType>
+bool heap<itemType>::checkHeapness(int current) {
+    if (this->compare(current, this->getLeftChildrenLocation(current)) || 
+        this->compare(current, this->getRightChildrenLocation(current))) return false;
+    else return true;
+}
+
+template<typename itemType>
+int heap<itemType>::getRemoveChild(int current) {
+    int left = this->getLeftChildrenLocation(current);
+    int right = this->getRightChildrenLocation(current);
+
+    if (this->type == 0) return (this->root[left] > this->root[right] ? left : right);
+    else  return (this->root[left] < this->root[right] ? left : right);
+}
+
+template<typename itemType>
+bool heap<itemType>::isLeaf(int current) {
+    int left = this->getLeftChildrenLocation(current);
+    int right = this->getRightChildrenLocation(current);
+
+    if (left > this->count && right > this->count) return true;
+    else return false;
 }
 
 template<typename itemType>

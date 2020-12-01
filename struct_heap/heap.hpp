@@ -22,17 +22,21 @@ class heap {
         heap(int type, int size); // 0: max-heap, 1: min-heap
 
         bool insert(itemType newValue);
+        void traversal();
 
+        itemType getter(int index);
         int getSize();
         int getCount();
         int getType();
+        bool isEmpty();
+        bool isFull();
 };
 
 template<typename itemType>
 heap<itemType>::heap(int type, int size) {
-    this->root = new itemType[size];
+    this->root = new itemType[size]();
     this->type = type;
-    this->size = size;
+    this->size = size + 1;
     this->count = 0;
 }
 
@@ -51,31 +55,56 @@ bool heap<itemType>::insert(itemType newValue) {
     if (count > size) return false;
 
     // insert value
-    this->root[this->current] = newValue;
+    int truePos = this->count + 1;
+    this->root[truePos] = newValue;
 
     // check if min or max heap
-    int iterator = this->current;
-    while (iterator > 0) {
+    int iterator = truePos;
+    while (iterator >= 1) {
         int parent = this->getParentLocation(iterator);
         if (this->compare(parent, iterator)) {
             this->swap(parent, iterator);
         }
-        iterator = this->getParentLocation(iterator);
+        iterator = parent;
     }
 
-    this->current += 1;
+    this->count += 1;
     return true;
 }
 
 template<typename itemType>
+itemType heap<itemType>::getter(int index) {
+    return this->root[index];
+}
+
+template<typename itemType>
+void heap<itemType>::traversal() {
+    cout << this->root[1];
+    
+    for (int i = 2; i < this->size; i++) cout << " " << this->root[i];
+    cout << endl;
+    return;
+}
+
+template<typename itemType>
 bool heap<itemType>::compare(int parent, int current) {
-    if (this->type == 0) return this->root[current] > this->root[parent];
-    else return this->root[parent] < this->root[current];
+    if (this->type == 0) return this->root[current] < this->root[parent]; // max-heap
+    else return this->root[parent] > this->root[current]; // min-heap
+}
+
+template<typename itemType>
+bool heap<itemType>::isEmpty() {
+    return this->count == 0;
+}
+
+template<typename itemType>
+bool heap<itemType>::isFull() {
+    return (this->count + 1) == this->size;
 }
 
 template<typename itemType>
 int heap<itemType>::getSize() {
-    return this->size;
+    return this->size - 1;
 }
 
 template<typename itemType>

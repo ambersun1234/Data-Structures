@@ -20,6 +20,7 @@ class heap {
 
     public:
         heap(int type, int size); // 0: max-heap, 1: min-heap
+        ~heap();
 
         bool insert(itemType newValue);
         bool remove();
@@ -38,10 +39,18 @@ class heap {
 
 template<typename itemType>
 heap<itemType>::heap(int type, int size) {
-    this->root = new itemType[size]();
+    this->root = new itemType[size + 1]();
     this->type = type;
     this->size = size + 1;
     this->count = 0;
+}
+
+template<typename itemType>
+heap<itemType>::~heap() {
+    delete[] this->root;
+    this->type = 0;
+    this->count = 0;
+    this->size = 0;
 }
 
 template<typename itemType>
@@ -56,7 +65,7 @@ bool heap<itemType>::swap(int parent, int current) {
 
 template<typename itemType>
 bool heap<itemType>::insert(itemType newValue) {
-    if (this->count > this->size) return false;
+    if (this->count + 1 >= this->size) return false;
 
     // insert value
     int truePos = this->count + 1;
@@ -96,7 +105,8 @@ bool heap<itemType>::remove() {
 
 template<typename itemType>
 itemType heap<itemType>::getter(int index) {
-    return this->root[index];
+    if (index >= this->size) return this->root[0];
+    else return this->root[index];
 }
 
 template<typename itemType>

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define struct_queue_header
+#define struct_queuec_header
 
 #ifndef struct_node_header
     #include "../struct_node/node.hpp"

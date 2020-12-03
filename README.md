@@ -30,11 +30,11 @@ make ci
 ```
 
 ## Implementation link
++ [list - linked list](./struct_list)
 + [stack - linked list](./struct_stack)
 + [queue - array](./struct_queuea)
-+ [list - linked list](./struct_list)
-+ [circular queue - doubly linked list](./struct_queue)
-+ [circular priority queue - linked list](./struct_queuep)
++ [circular queue - doubly linked list](./struct_queuec)
++ [circular priority queue - linked list](./struct_queuecp)
 + [binary search tree - singly linkes list](./struct_tree)
 + [min max heap - array](./struct_heap)
 

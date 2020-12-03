@@ -3,8 +3,8 @@
 
 using namespace std;
 
-#ifndef struct_queue_header
-    #include "./queue.hpp"
+#ifndef struct_queuec_header
+    #include "./queuec.hpp"
 #endif
 
 #ifndef struct_node_header

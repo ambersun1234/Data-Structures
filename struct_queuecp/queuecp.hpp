@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define struct_queuep_header
+#define struct_queuecp_header
 
 #ifndef struct_node_header
     #include "../struct_node/node.hpp"

@@ -29,8 +29,8 @@ circular queue implementation based on doubly linked list
 
 ## Test
 ```=1
-make unit queue
-make test queue
+make unit queuec
+make test queuec
 ```
 
 > run the above command at root directory

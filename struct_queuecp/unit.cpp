@@ -3,8 +3,8 @@
 
 using namespace std;
 
-#ifndef struct_queuep_header
-    #include "./queuep.hpp"
+#ifndef struct_queuecp_header
+    #include "./queuecp.hpp"
 #endif
 
 #include "gtest/gtest.h"

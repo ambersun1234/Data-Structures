@@ -23,8 +23,8 @@ circular priority queue implementation based on linked list
 
 ## Test
 ```=1
-make unit queuep
-make test queuep
+make unit queuecp
+make test queuecp
 ```
 
 > run the above command at root directory

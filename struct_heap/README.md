@@ -32,6 +32,12 @@ special form of a complete binary tree
     + check heap is empty or not
 + `checkHeapness`
     + check if heap is heapness or not
++ `legal`
+    + check child is legal or not(out of bound)
++ `heapnessButtomUp`
+    + check heapness buttom up
++ `heapnessTopDown`
+    + check heapness top down
 + `isLeaf`
     + check if node is leaf or not
 + `isFull`
